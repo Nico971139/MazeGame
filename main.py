@@ -14,8 +14,9 @@ class Maze:
             for key,value in enumerate(contents):
                 grid[key] = value
             for key in range(15):
-                print(value * 3)
-        
+                print(key, value * 3)
+                
+            
 
             
 
