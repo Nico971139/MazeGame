@@ -14,7 +14,7 @@ class Maze:
             for key,value in enumerate(contents):
                 grid[key] = value
             for key in range(15):
-                print(key, value * 3)
+                print(key, value)
                 
             
 
@@ -32,7 +32,7 @@ class Guardian:
 
 
 def main():
-    """test pour creer une liste de liste"""
+    """Fonction principale"""
     maze = Maze()
     print(maze.read_maze())
     
