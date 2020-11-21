@@ -10,13 +10,12 @@ class Maze:
         with open("Maze.txt","r") as maze_file: #ouvre le fichier
             line = maze_file.readline() #lire le fichier ligne par ligne Maze.txt
             grid = {}
-            
+            liste = []
             while line != "":
                 lines = line.split()
                 print(lines)
                 line = maze_file.readline() #ligne suivante
-            
-            
+                
             # grid([x, y]) = "chemin"
             # grid([x, y]) = "McGyver"
             # grid([x, y]) = "Gardien"
