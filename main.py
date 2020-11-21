@@ -8,23 +8,28 @@ class Maze:
 
     def read_maze(self):
         with open("Maze.txt","r") as maze_file: #ouvre le fichier
-            contents = maze_file.read() #lire le fichier Maze.txt
-            contents = contents.split()
+            line = maze_file.readline() #lire le fichier ligne par ligne Maze.txt
+            lines = line.split()
             grid = {}
-            for key,value in enumerate(contents):
-                grid[key] = value
-            for key in range(15):
-                print(key, value)
-                
+            print(lines)
+            """while line != "":
+                print(lines)
+                line = maze_file.readline()"""
             
-
             
-
+            # grid([x, y]) = "chemin"
+            # grid([x, y]) = "McGyver"
+            # grid([x, y]) = "Gardien"
+            
+            
+           
+            
+            
+            
 
 class MacGyver:
     """ personnage MacGyver"""
     pass
-
 class Guardian:
     """ le gardien """
     pass
