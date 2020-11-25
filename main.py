@@ -4,7 +4,7 @@ class Maze:
 	"""Ma grille aura 15 carrés de longueur et 15 carrés de largeur"""
 	def __init__(self):
 		"""le labyrinthe est une grille."""
-		self.grid = {}
+		pass
 
 	def read_maze(self):
 		with open("Maze.txt","r") as maze_file: #ouvre le fichier
@@ -31,24 +31,34 @@ class Maze:
 		with open("Maze.txt","r") as maze_file:
 			way = maze_file.readline()
 			while way != "":
-				true_way = way.replace("#", ".")
+				true_way = way.replace("#", " ")
 				print(true_way)
 				way = maze_file.readline()
 				
 			
 class MacGyver:
 	""" personnage MacGyver"""
-	pass
+	def __init__(self):
+		self.health = 10
+		self.max_health = 10
+		self.attack = 0
+		self.speed = 1
+
+	def movement(self):
+		pass
+
 class Guardian:
 	""" le gardien """
 	pass
 
-
+class Items:
+	""" les objets """
+	pass
 
 def main():
 	"""Fonction principale"""
 	maze = Maze()
-	print(maze.waylist())
+	print(maze.read_maze())
 
 	
 	
