@@ -1,51 +1,70 @@
 # coding: utf-8
+import random
 
 class Maze:
-	"""Ma grille aura 15 carrés de longueur et 15 carrés de largeur"""
+	"""Une grille de 15 cellules par 15 cellule"""
 	def __init__(self):
 		"""le labyrinthe est une grille."""
-		pass
+		self.maze_file = open("Maze.txt", "r")
+		
+
 
 	def read_maze(self):
-		with open("Maze.txt","r") as maze_file: #ouvre le fichier
-			line = maze_file.readline() #lire le fichier ligne par ligne Maze.txt
-			grid = {}
-			lines = []
-			while line != "":
-				element = line.split()
-				lines.append(element)
-				print(element)
-				line = maze_file.readline()    
-			for i, row in enumerate(lines):
-				for x, y in enumerate(row):
-					grid[i, x] = y
-			for key, value in grid.items():
-					#print(key,value)
-					pass      
-			# grid([x, y]) = "chemin"
-			# grid([x, y]) = "McGyver"
-			# grid([x, y]) = "Gardien"
-			
+		
+		line = self.maze_file.readline() #lire le fichier ligne par ligne Maze.txt
+		grid = {}
+		lines = []
+		while line != "":
+			element = line.split()
+			lines.append(element)
+			print(element)
+			line = self.maze_file.readline()
+
+		for i, row in enumerate(lines):
+			for x, y in enumerate(row):
+				grid[i, x] = y
+		
+		return grid		
+					      
+		
 			
 	def waylist(self):
-		with open("Maze.txt","r") as maze_file:
-			way = maze_file.readline()
-			while way != "":
-				true_way = way.replace("#", " ")
-				print(true_way)
-				way = maze_file.readline()
+		"""Recuperer la liste de chemin"""
+		text = self.maze_file.readline()
+		way = {}
+		waylist = {}
+		matrix = []
+		for i in text:
+			liste = text.split()
+			matrix.append(liste)
+			text = self.maze_file.readline() 
+			for i, row in enumerate(matrix):
+				for x, y in enumerate(row):
+					way[i, x] = y
+
+		for key, value in way.items():
+			if value == "0":
+				waylist[key] = value
+			else:
+				pass
+
+		return waylist		
 				
-			
+		
+
+
+		
 class MacGyver:
 	""" personnage MacGyver"""
 	def __init__(self):
-		self.health = 10
-		self.max_health = 10
-		self.attack = 0
-		self.speed = 1
+		pass
 
 	def movement(self):
 		pass
+
+	def takeItems(self):
+		pass
+
 
 class Guardian:
 	""" le gardien """
@@ -53,12 +72,19 @@ class Guardian:
 
 class Items:
 	""" les objets """
-	pass
+	def __init__(self):
+		self.char = "Z"
+	
+	def random_position(self):
+		return [random.choice(k, v) for k, v in Maze.waylist.items()] 
+
 
 def main():
 	"""Fonction principale"""
 	maze = Maze()
-	print(maze.read_maze())
+	macGyver = MacGyver()
+	item = Items()
+	print(item.random_position)
 
 	
 	
