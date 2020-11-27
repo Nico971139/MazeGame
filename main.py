@@ -75,16 +75,14 @@ class Items:
 	def __init__(self):
 		self.char = "Z"
 	
-	def random_position(self):
-		return [random.choice(k, v) for k, v in Maze.waylist.items()] 
-
+	
 
 def main():
 	"""Fonction principale"""
 	maze = Maze()
 	macGyver = MacGyver()
 	item = Items()
-	print(item.random_position)
+	print(maze.waylist())
 
 	
 	
