@@ -20,17 +20,12 @@ class Maze:
 		while line != "":
 			element = line.split()
 			lines.append(element)
-			print(element)
+			#print(element)
 			line = self.maze_file.readline()
 
 		for i, row in enumerate(lines):
 			for x, y in enumerate(row):
 				self.grid[i, x] = y
-				
-					      
-	
-
-
 
 	
 	def waylist(self):
@@ -45,12 +40,6 @@ class Maze:
 		"""for k in list(way):
 			for n in range(3):	
 				random.choice(list(way))"""
-		
-	
-	
-
-
-
 		
 class MacGyver:
 	""" personnage MacGyver"""
@@ -68,12 +57,19 @@ class Guardian:
 	""" le gardien """
 	pass
 
-class Items:
+class Items(Maze):
 	""" les objets """
 	def __init__(self ):
-		
-		pass
-	
+		super().__init__()
+		self.characters = "Z"
+		self.position = [random.choice(self.way_list.key()) for k in self.way_list]
+			
+	"""def put_items(self):
+		for k in list(self.way_list):
+			for n in range(3):
+				print(random.choice(list(self.way_list)))"""
+			
+				
 
 	
 
@@ -83,7 +79,11 @@ def main():
 	macGyver = MacGyver()
 	maze.read_maze()
 	maze.waylist()
-	print(maze.way_list)
+	items = Items() #Initialiser les objets
+	items.read_maze()
+	items.waylist()
+	#Positioner les objet sur les chemins
+	print(items.way_list)
 	
 	
 
