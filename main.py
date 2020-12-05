@@ -30,6 +30,10 @@ class Maze:
 		for key, value in enumerate(objects):
 			self.grid[self.way_list[key]] = value
 
+	def waylist_contains(self):      # test
+		for key, value in enumerate(self.way_list):
+			return key, value
+
 
 class MacGyver(Maze):
 	"""Personnage principal"""
@@ -42,27 +46,31 @@ class MacGyver(Maze):
 	def __str__(self):
 		return "Mon personnage principal" # juste un petit test
 
-	def take_objects(self):
-		pass
-
+	
 	def top(self):
 		try: 
 			if self.grid[(self.x, self.y - 1)] == "0":  #vérifier que la destination n'est pas un mur
-					self.y -= 1
-				   									#vérifier que la destination n'est pas en dehors de la grille du labyrinthe
-		except:
+				self.y -= 1
+				   									
+			elif self.grid[(self.x, self.y - 1)] == "T" or "S" or "E": #vérifier s'il y a un objet ou non sur la case de destination
+				self.inventory.append((self.x, self.y)) #ajouter l'objet ramassé dans le sac à dos de MacGyver
+				self.grid[(self.x, self.y - 1)] = "0"  #"ramasser" cet objet. redéfinir la valeur de la clé dans la grille à "chemin"
+
+		except:  #vérifier que la destination n'est pas en dehors de la grille du labyrinthe
 			pass
 		
- 		#vérifier s'il y a un objet ou non sur la case de destination
- 		#"ramasser" cet objet. redéfinir la valeur de la clé dans la grille à "chemin"
- 		#ajouter l'objet ramassé dans le sac à dos de MacGyver
+ 		
+ 		
+ 		
  		#vérifier s'il y a le gardien ou non sur la case de destination
 
 	def bot(self):
 		try: 
 			if self.grid[(self.x, self.y + 1)] == "0":  #vérifier que la destination n'est pas un mur
 					self.y += 1
-												   	
+			elif self.grid[(self.x, self.y - 1)] == "T" or "S" or "E": #vérifier s'il y a un objet ou non sur la case de destination
+				self.inventory.append((self.x, self.y))
+				self.grid[(self.x, self.y - 1)] = "0"									   	
 		except:       #vérifier que la destination n'est pas en dehors de la grille du labyrinthe
 			pass		
 			
@@ -71,24 +79,43 @@ class MacGyver(Maze):
 		try: 
 			if self.grid[(self.x - 1, self.y)] == "0":  #vérifier que la destination n'est pas un mur
 					self.x -= 1
-												   	
+			elif self.grid[(self.x, self.y - 1)] == "T" or "S" or "E": #vérifier s'il y a un objet ou non sur la case de destination
+				self.inventory.append((self.x, self.y))
+				self.grid[(self.x, self.y - 1)] = "0"									   	
 		except:		#vérifier que la destination n'est pas en dehors de la grille du labyrinthe
 			pass
 
 	def right(self):
-
 		try: 
 			if self.grid[(self.x - 1, self.y)] == "0":  #vérifier que la destination n'est pas un mur
 					self.x += 1
-												   	
+			elif self.grid[(self.x, self.y - 1)] == "T" or "S" or "E": #vérifier s'il y a un objet ou non sur la case de destination
+				self.inventory.append((self.x, self.y))
+				self.grid[(self.x, self.y - 1)] = "0"									   	
 		except:				#vérifier que la destination n'est pas en dehors de la grille du labyrinthe
 			pass
+
+
+class Guardian(Maze):
+	"""Le boss du labyrinthe"""
+	def __init__(self):
+		super().__init__()
+		(self.x, self.y) = random.choice(self.way_list)
+
+
+
+
+
 
 if __name__ == '__main__':
 	"""Fonction principale"""
 	maze = Maze()
 	macGyver = MacGyver()
-	macGyver.right()
-	print(macGyver.x)
-	print(macGyver.y)
+	gardien = Guardian()
+	macGyver.bot()
+	print(maze.grid)
+	#print(macGyver.x)
+	#print(macGyver.y)
+	print(gardien.x)
+	print(gardien.y)
 
