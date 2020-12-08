@@ -7,9 +7,10 @@ class Maze:
 		"""le labyrinthe est une grille."""
 		self.grid = {}
 		self.way_list = []
+		self.objects = {}
 		self.read_maze()
 		self.set_objects()
-		
+		self.objects_list()
 
 	def read_maze(self):
 		x, y = 0, 0
@@ -30,70 +31,74 @@ class Maze:
 		for key, value in enumerate(objects):
 			self.grid[self.way_list[key]] = value
 
-	def waylist_contains(self):      # test
-		for key, value in enumerate(self.way_list):
-			return key, value
-
+	def objects_list(self):
+		for key, value in self.grid.items():
+			self.grid[key] = value
+			if value == "T":
+				self.objects[key] = value
+			if value == "S":
+				self.objects[key] = value
+			if value == "E":
+				self.objects[key] = value
 
 class MacGyver(Maze):
 	"""Personnage principal"""
-	def __init__(self):
+	def __init__(self, x, y):
 		super().__init__()
-		self.x = 1
-		self.y = 0
+		self.x = x
+		self.y = y
+		self.position = (self.x, self.y)
+		self.new_position = ()
 		self.inventory = []
+		self.take_item()
+
 
 	def __str__(self):
 		return "Mon personnage principal" # juste un petit test
 
-	
-	def top(self):
-		try: 
-			if self.grid[(self.x, self.y - 1)] == "0":  #vérifier que la destination n'est pas un mur
-				self.y -= 1
-				   									
-			elif self.grid[(self.x, self.y - 1)] == "T" or "S" or "E": #vérifier s'il y a un objet ou non sur la case de destination
-				self.inventory.append((self.x, self.y)) #ajouter l'objet ramassé dans le sac à dos de MacGyver
-				self.grid[(self.x, self.y - 1)] = "0"  #"ramasser" cet objet. redéfinir la valeur de la clé dans la grille à "chemin"
 
-		except:  #vérifier que la destination n'est pas en dehors de la grille du labyrinthe
-			pass
+	def check_way(self):
 		
- 		
- 		
- 		
- 		#vérifier s'il y a le gardien ou non sur la case de destination
-
-	def bot(self):
-		try: 
-			if self.grid[(self.x, self.y + 1)] == "0":  #vérifier que la destination n'est pas un mur
-					self.y += 1
-			elif self.grid[(self.x, self.y - 1)] == "T" or "S" or "E": #vérifier s'il y a un objet ou non sur la case de destination
-				self.inventory.append((self.x, self.y))
-				self.grid[(self.x, self.y - 1)] = "0"									   	
-		except:       #vérifier que la destination n'est pas en dehors de la grille du labyrinthe
-			pass		
+		if self.new_position in self.way_list:
+			return self.new_position
+		else:
+			print("Vous ne passerez pas")
+			pass
 			
 
+	def take_item(self):
+		"""S'il y  a un objet sur le chemin on 
+		le ramasse et on le met dans le sac"""
+		if self.new_position in self.objects:						#vérifier s'il y a un objet ou non sur la case de destination
+		 	for key, value in self.objects.items():			            #ajouter l'objet ramassé dans le sac à dos de MacGyver
+		 		self.new_position[key] = value
+		 		self.inventory.append(value)		            #"ramasser" cet objet. redéfinir la valeur de la clé dans la grille à "chemin"
+
+
+
+	def top(self):
+		self.y = self.y - 1
+		self.new_position = self.x, self.y
+		return self.new_position
+		
+ 		
+	def bot(self):
+		self.y = self.y + 1
+		self.new_position = self.x, self.y
+		return self.new_position
+		
+		
+
 	def left(self):
-		try: 
-			if self.grid[(self.x - 1, self.y)] == "0":  #vérifier que la destination n'est pas un mur
-					self.x -= 1
-			elif self.grid[(self.x, self.y - 1)] == "T" or "S" or "E": #vérifier s'il y a un objet ou non sur la case de destination
-				self.inventory.append((self.x, self.y))
-				self.grid[(self.x, self.y - 1)] = "0"									   	
-		except:		#vérifier que la destination n'est pas en dehors de la grille du labyrinthe
-			pass
+		self.x = self.x - 1
+		self.new_position = self.x, self.y
+		return self.new_position
+		
 
 	def right(self):
-		try: 
-			if self.grid[(self.x - 1, self.y)] == "0":  #vérifier que la destination n'est pas un mur
-					self.x += 1
-			elif self.grid[(self.x, self.y - 1)] == "T" or "S" or "E": #vérifier s'il y a un objet ou non sur la case de destination
-				self.inventory.append((self.x, self.y))
-				self.grid[(self.x, self.y - 1)] = "0"									   	
-		except:				#vérifier que la destination n'est pas en dehors de la grille du labyrinthe
-			pass
+		self.x = self.x + 1
+		self.new_position = self.x, self.y
+		return self.new_position 
 
 
 class Guardian(Maze):
@@ -110,12 +115,17 @@ class Guardian(Maze):
 if __name__ == '__main__':
 	"""Fonction principale"""
 	maze = Maze()
-	macGyver = MacGyver()
+	macGyver = MacGyver(1, 0)
 	gardien = Guardian()
+	#print(maze.way_list)
 	macGyver.bot()
+	macGyver.bot()
+	macGyver.right()
 	print(maze.grid)
-	#print(macGyver.x)
-	#print(macGyver.y)
-	print(gardien.x)
-	print(gardien.y)
+	print(macGyver.new_position)
+	print(maze.objects)
+	print(macGyver.inventory)
+	"""for k, v in maze.objects.items():
+		print(k, v)"""
+	
 
