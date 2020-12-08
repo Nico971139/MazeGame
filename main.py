@@ -50,7 +50,7 @@ class MacGyver(Maze):
 		self.position = (self.x, self.y)
 		self.new_position = ()
 		self.inventory = []
-		self.take_item()
+		
 
 
 	def __str__(self):
@@ -69,19 +69,16 @@ class MacGyver(Maze):
 	def take_item(self):
 		"""S'il y  a un objet sur le chemin on 
 		le ramasse et on le met dans le sac"""
-		if self.new_position in self.objects:						#vérifier s'il y a un objet ou non sur la case de destination
-		 	for key, value in self.objects.items():			            #ajouter l'objet ramassé dans le sac à dos de MacGyver
-		 		self.new_position[key] = value
-		 		self.inventory.append(value)		            #"ramasser" cet objet. redéfinir la valeur de la clé dans la grille à "chemin"
-
-
+		if self.new_position in self.objects:
+			objet = self.grid.get(self.new_position)   #pas bon
+			self.inventory.append(objet)
 
 	def top(self):
 		self.y = self.y - 1
 		self.new_position = self.x, self.y
 		return self.new_position
 		
- 		
+		
 	def bot(self):
 		self.y = self.y + 1
 		self.new_position = self.x, self.y
@@ -121,11 +118,12 @@ if __name__ == '__main__':
 	macGyver.bot()
 	macGyver.bot()
 	macGyver.right()
+	macGyver.take_item()
 	print(maze.grid)
 	print(macGyver.new_position)
 	print(maze.objects)
 	print(macGyver.inventory)
-	"""for k, v in maze.objects.items():
-		print(k, v)"""
+	print(maze.grid.get(macGyver.new_position)) #test
+		
 	
 
