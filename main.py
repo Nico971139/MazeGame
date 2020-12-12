@@ -7,103 +7,112 @@ class Maze:
 		"""le labyrinthe est une grille."""
 		self.grid = {}
 		self.way_list = []
-		self.objects = {}
+		self.macGyver = None
+		self.guardian = None
+		self.inventory = []
 		self.read_maze()
 		self.set_objects()
-		self.objects_list()
+		
 
 	def read_maze(self):
+		"""On va lire le fichier maze.txt et 
+		pour chaque element du fichier on lui
+		attribut une abscisse et une ordonnée"""
 		x, y = 0, 0
 		with open("Maze.txt", "r") as line:
 			l = line.read()
+			# pour chaque element du fichier
 			for element in l:
+				# si on va à la ligne
 				if element == '\n':
 					x, y = 0, y+1
 				else :
 					self.grid[(x, y)] = element
 					if element == "0":
 						self.way_list.append((x, y))
+					if element == "D":
+						self.macGyver = x, y 
+					if element == "F":
+						self.guardian = x, y
 					x += 1
 
 	def set_objects(self):
+		"""crée une liste d'objets qu'on 
+		place aleatoirement sur le chemin"""
 		objects = ["T", "S", "E"]
 		random.shuffle(self.way_list)
 		for key, value in enumerate(objects):
 			self.grid[self.way_list[key]] = value
 
-	def objects_list(self):
-		for key, value in self.grid.items():
-			self.grid[key] = value
-			if value == "T":
-				self.objects[key] = value
-			if value == "S":
-				self.objects[key] = value
-			if value == "E":
-				self.objects[key] = value
+	########################
+	###### DESTINATION #####
+	########################             
 
-class MacGyver(Maze):
-	"""Personnage principal"""
-	def __init__(self, x, y):
-		super().__init__()
-		self.x = x
-		self.y = y
-		self.position = (self.x, self.y)
-		self.new_position = ()
-		self.inventory = []
+	def check_move(self, a, b):
+		"""vérifier que la destination n'est pas un mur"""
+		"""vérifier que la destination n'est pas en dehors de la grille du labyrinthe"""
+		return ((a, b) in self.grid and self.grid[a, b] != "#")
+
+	def check_items(self, a, b):
+		"""	vérifier s'il y a un objet ou non sur la case de destination
+			"ramasser" cet objet. redéfinir la valeur de la clé dans la grille à "chemin"
+			ajouter l'objet ramassé dans le sac à dos de MacGyver"""
+		if self.grid[a, b] == "T" or self.grid[a, b] == "S" or self.grid[a, b] ==  "E":
+			self.inventory.append(self.grid[a, b])
+			print(self.grid[a, b])
+			self.grid[a, b] = "0"
+
+	def check_pos_guardian(self, a, b):
+		"""vérifier s'il y a le gardien
+		ou non sur la case de destination"""
+		if self.grid[a, b] == self.grid[self.guardian]:
+			if len(self.inventory) == 3:
+				print("You win")
+			else:
+				print("Repose en paix, fils du Gondor.")
 		
-
-
-	def __str__(self):
-		return "Mon personnage principal" # juste un petit test
-
-
-	def check_way(self):
-		
-		if self.new_position in self.way_list:
-			return self.new_position
-		else:
-			print("Vous ne passerez pas")
-			pass
-			
-
-	def take_item(self):
-		"""S'il y  a un objet sur le chemin on 
-		le ramasse et on le met dans le sac"""
-		if self.new_position in self.objects:
-			objet = self.grid.get(self.new_position)   #pas bon
-			self.inventory.append(objet)
-
+	########################
+	######    MOVES    #####
+	########################
 	def top(self):
-		self.y = self.y - 1
-		self.new_position = self.x, self.y
-		return self.new_position
-		
-		
+		x = self.macGyver[0]
+		y = self.macGyver[1] - 1
+		if self.check_move(x, y):
+			self.macGyver = x, y
+			self.check_items(x, y)
+			self.check_pos_guardian(x, y)
+
 	def bot(self):
-		self.y = self.y + 1
-		self.new_position = self.x, self.y
-		return self.new_position
-		
-		
+		x = self.macGyver[0]
+		y = self.macGyver[1] + 1
+		if self.check_move(x, y):
+			self.macGyver = x, y
+			self.check_items(x, y)
+			self.check_pos_guardian(x, y)
+
 
 	def left(self):
-		self.x = self.x - 1
-		self.new_position = self.x, self.y
-		return self.new_position
-		
+		x = self.macGyver[0] - 1
+		y = self.macGyver[1] 
+		if self.check_move(x, y):
+			self.macGyver = x, y
+			self.check_items(x, y)
+			self.check_pos_guardian(x, y)
 
 	def right(self):
-		self.x = self.x + 1
-		self.new_position = self.x, self.y
-		return self.new_position 
-
-
-class Guardian(Maze):
-	"""Le boss du labyrinthe"""
+		x = self.macGyver[0] + 1 
+		y = self.macGyver[1] 
+		if self.check_move(x, y):
+			self.macGyver = x, y
+			self.check_items(x, y)
+			self.check_pos_guardian(x, y)
+	
+class MacGyver():
+	"""Personnage principal"""
 	def __init__(self):
-		super().__init__()
-		(self.x, self.y) = random.choice(self.way_list)
-
+		self.x = x
+		self.y = y
+		self.inventory = []
 
 
 
@@ -112,18 +121,16 @@ class Guardian(Maze):
 if __name__ == '__main__':
 	"""Fonction principale"""
 	maze = Maze()
-	macGyver = MacGyver(1, 0)
-	gardien = Guardian()
-	#print(maze.way_list)
-	macGyver.bot()
-	macGyver.bot()
-	macGyver.right()
-	macGyver.take_item()
-	print(maze.grid)
-	print(macGyver.new_position)
-	print(maze.objects)
-	print(macGyver.inventory)
-	print(maze.grid.get(macGyver.new_position)) #test
-		
+	maze.bot()
+	maze.bot()
+	maze.right()
+	maze.right()
+	#maze.check_way()
+	print(maze.grid[maze.guardian])
+	print(maze.macGyver)
+	print(maze.inventory)
+	
+	
+	
 	
 
