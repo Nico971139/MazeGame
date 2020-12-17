@@ -1,5 +1,6 @@
 # coding: utf-8
 import random
+import pygame
 
 class Maze:
 	"""Une grille de 15 cellules par 15 cellule"""
@@ -125,8 +126,6 @@ if __name__ == '__main__':
 	maze.bot()
 	maze.right()
 	maze.right()
-	#maze.check_way()
-	print(maze.grid[maze.guardian])
 	print(maze.macGyver)
 	print(maze.inventory)
 	
