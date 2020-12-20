@@ -2,7 +2,7 @@
 import random
 import pygame
 
-class Maze:
+class Maze():
 	"""Une grille de 15 cellules par 15 cellule"""
 	def __init__(self):
 		"""le labyrinthe est une grille."""
@@ -111,23 +111,32 @@ class Maze:
 class MacGyver():
 	"""Personnage principal"""
 	def __init__(self):
-		self.x = x
-		self.y = y
 		self.inventory = []
+		self.image = pygame.image.load('ressource/Mario.png').convert_alpha()
 
 
+class Game():
+	""" Game display """
+	def __init__(self):
+		self.size = self.width, self.height = 640, 480
+		self.screen = pygame.display.set_mode(self.size)
+		self.wall = pygame.image.load('ressource/mur.png')
+		self.way = pygame.image.load('ressource/chemin.png')
+		self.boss_image = pygame.image.load('ressource/gardien.png')
 
+
+	
 
 
 if __name__ == '__main__':
 	"""Fonction principale"""
-	maze = Maze()
-	maze.bot()
-	maze.bot()
-	maze.right()
-	maze.right()
-	print(maze.macGyver)
-	print(maze.inventory)
+	game = Game()
+	player = MacGyver()
+	print(game.size)
+	print(game.width)
+	print(game.wall)
+
+
 	
 	
 	

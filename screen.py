@@ -1,23 +1,40 @@
 # coding: utf-8
-
-import pygame
+from maze import *
+import pygame, sys
 pygame.init()
 
-#creation de la fenetre de jeu 
+maze = Maze()
+game = Game()
+player = MacGyver()
+wall = game.wall
+way = game.way
+player_image = player.image
+boss = game.boss_image
+# Create the display surface
+screen = game.screen
 pygame.display.set_caption("MAZE GAME")
-surface =  pygame.display.set_mode((640, 480))
 
-#fond
-background = pygame.image.load('ressource/mountains.jpg')
 
-launched = True
-#Boucle du jeu 
-while launched:
-	# si la fenetre se ferme
+x, y = 0, 0
+for y in range(15):
+	for x in range(15):
+		if maze.grid[(x, y)] == "#":
+			screen.blit(wall, (x*20, y*20))
+		if maze.grid[(x,y)] == "0":
+			screen.blit(way, (x*20, y*20))
+		if maze.grid[(x,y)] == "D":
+			screen.blit(player_image, (x*20, y*20))
+		if maze.grid[(x,y)] == "F":
+			screen.blit(boss, (x*20, y*20))
+
+# game loop
+while 1:
 	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			launched = False
-			pygame.quit()
+		if event.type == pygame.QUIT: sys.exit()
 
-	surface.blit(background, (0, 0))
+		
+
+
+
 	pygame.display.flip()
+
