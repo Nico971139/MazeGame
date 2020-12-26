@@ -1,5 +1,7 @@
 # coding: utf-8
-from maze import Maze, Game, MacGyver
+from maze import Maze
+from macGyver import MacGyver
+from game import Game
 import pygame, sys
 pygame.init()
 
@@ -11,10 +13,10 @@ syringe = game.syringe
 ether = game.ether
 tube = game.tube
 player_image = player.image
-player_rect = player_image.get_rect()
 boss = game.boss_image
 # Create the display surface
 screen = game.screen
+screen.fill((0,0,0))
 pygame.display.set_caption("MAZE GAME")
 
 
@@ -39,25 +41,31 @@ for y in range(15):
 			screen.blit(syringe, (x*20,y*20))
 		if player.grid[(x, y)] == "E":
 			screen.blit(ether, (x*20,y*20))
+
+
 # game loop
-while 1:
+while True:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT: sys.exit()
 
 		elif event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_RIGHT:
+				screen.blit(way, player.rect)
 				player.right()
 				screen.blit(player_image, player.rect)
 				pygame.display.flip()
 			elif event.key == pygame.K_LEFT:
-				player.left()
+				screen.blit(way, player.rect)
+				player.left()	
 				screen.blit(player_image, player.rect)
 				pygame.display.flip()
 			elif event.key == pygame.K_UP:
+				screen.blit(way, player.rect)
 				player.top()
 				screen.blit(player_image, player.rect)
 				pygame.display.flip() 
 			elif event.key == pygame.K_DOWN:
+				screen.blit(way, player.rect)
 				player.bot()
 				screen.blit(player_image, player.rect)
 				pygame.display.flip()

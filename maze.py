@@ -2,6 +2,7 @@
 import random
 import pygame
 
+
 class Maze(pygame.sprite.Sprite):
 	"""Grid with coordinate keys and values
 	Player start at "D" if he pick up all items
@@ -16,7 +17,6 @@ class Maze(pygame.sprite.Sprite):
 		self.macGyver = None
 		self.guardian = None
 		self.inventory = []
-		self.image = pygame.image.load('ressource/Mario.png')
 		self.read_maze()
 		self.set_objects()
 		
@@ -81,6 +81,7 @@ class Maze(pygame.sprite.Sprite):
 			self.check_pos_guardian(x, y)
 			# update rect position
 			self.rect.x , self.rect.y = x*20, y*20
+			
 
 	def bot(self):
 		x = self.macGyver[0]
@@ -91,6 +92,7 @@ class Maze(pygame.sprite.Sprite):
 			self.check_pos_guardian(x, y)
 			# update rect position
 			self.rect.x , self.rect.y = x*20, y*20
+			
 
 	def left(self):
 		x = self.macGyver[0] - 1
@@ -101,7 +103,7 @@ class Maze(pygame.sprite.Sprite):
 			self.check_pos_guardian(x, y)
 			# update rect position
 			self.rect.x , self.rect.y = x*20, y*20
-
+			
 	def right(self):
 		x = self.macGyver[0] + 1 
 		y = self.macGyver[1] 
@@ -111,48 +113,8 @@ class Maze(pygame.sprite.Sprite):
 			self.check_pos_guardian(x, y)
 			# update rect position
 			self.rect.x , self.rect.y = x*20, y*20
-
-class MacGyver(Maze):
-	"""Hero"""
-	def __init__(self):
-		super().__init__()
-		"""Init the object player. Player is a rectangle
-		with an image. It's set with attribut self.macGyver * the block size"""
-		self.rect = self.image.get_rect()
-		self.rect.x = self.macGyver[0] * 20 
-		self.rect.y = self.macGyver[1] * 20
-
-
-class Game():
-	""" Game display """
-	def __init__(self):
-		"""Attributes of the game screen """
-		self.size = self.width, self.height = 300, 300
-		self.screen = pygame.display.set_mode(self.size)
-		self.wall = pygame.image.load('ressource/mur.png')
-		self.way = pygame.image.load('ressource/chemin.png')
-		self.boss_image = pygame.image.load('ressource/gardien.png')
-		self.syringe = pygame.image.load('ressource/seringue.png')
-		self.ether = pygame.image.load('ressource/ether.png')
-		self.tube = pygame.image.load('ressource/tube.png')
-	
-
-
-if __name__ == '__main__':
-	"""test function"""
-	maze = Maze()
-	game = Game()
-	player = MacGyver()
-	player.bot()
-	player.bot()
-	player.bot()
-	print(player.macGyver)
-	print(player.rect)
-	print(player.rect.x)
-	print(player.rect.y)
+			
 
 	
-	
-	
-	
+
 
