@@ -6,7 +6,7 @@ import sys
 from maze import Maze
 from macGyver import MacGyver
 from game import Game
-from setting import *
+from settings import *
 
 
 pygame.init()
