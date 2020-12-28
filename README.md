@@ -8,11 +8,13 @@ You are character stuck up in a Maze. To escape you have to get all items
 and kill the guardian.
 
 ## Requirements
-	Python3 , pygame and random to be installed.
 
-	- setting.py is the screen set.
-	- the folder class contains all the class.
-	- you can run the programm with main.py. 
+Python3 , pygame.
+
+- requirements.txt
+- setting.py is the screen set.
+- the folder class contains all the class.
+- you can run the programm with main.py. 
 
 ## How to install
 
@@ -24,9 +26,9 @@ and kill the guardian.
 - In the computer terminal write python pip install -m venv "env name"
 - activate your virtual environment => env/Scripts/activate.ps1
 
-**Install pygame**
+**Install pygame and the other packages**
 - Activate your virtual environment 
-- write the command python pip install pygame
+- write the command :  pip install -r requirements.txt 
 
 ## How these work
 
@@ -34,6 +36,7 @@ and kill the guardian.
 
 Contains 2 classes representing the framework the game, Maze and MacGyver. Both are wrapping 
 up by pygame with game class.
+
 **Maze** 
 
 is a dictionnary with keys tuple representing coordinates and values representing
@@ -56,4 +59,5 @@ Contains 2 functions.The first use to draw the maze. The second use to create a 
 Constants. 
 
 **Maze.txt**
+
 The maze.
