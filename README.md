@@ -1,5 +1,5 @@
-Maze Game
-==========
+# Maze Game
+					
 
 ## Description
 
@@ -15,11 +15,17 @@ and kill the guardian.
 	- you can run the programm with main.py. 
 
 ## How to install
-	***Create you project folder***
-	- create a repertory porject
-	- create your folder "ressource"
-	***Create a virtual environment*** 
-	- In the computer terminal write python pip install -m venv <env name>
-	- activate your virtual environment => env/Scripts/activate.ps1
-	
+
+**Create you project folder**
+- create a repertory project
+- create your folder "ressource"
+
+**Create a virtual environment** 
+- In the computer terminal write python pip install -m venv <env name>
+- activate your virtual environment => env/Scripts/activate.ps1
+
+**Install pygame**
+- Activate your virtual environment 
+- write the command python pip install pygame
+
 ## How these work

@@ -1,9 +1,13 @@
 # coding: utf-8
+import pygame
+import sys
+
+
 from maze import Maze
 from macGyver import MacGyver
 from game import Game
 from setting import *
-import pygame, sys
+
 
 pygame.init()
 
