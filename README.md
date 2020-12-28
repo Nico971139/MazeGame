@@ -38,9 +38,11 @@ up by pygame with game class.
 
 is a dictionnary with keys tuple representing coordinates and values representing
 wall, way, etc.
+
 **MacGyver**
 
 is a rect who move only if destination is in the maze's grid and is a way. He can get items in his inventory and knock out the guardian if he get all items in the inventory.
+
 **Game**
 
 This class contains all element of the game symbolise by pictures.
