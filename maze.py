@@ -115,6 +115,4 @@ class Maze(pygame.sprite.Sprite):
 			self.rect.x , self.rect.y = x*20, y*20
 			
 
-	
-
 
