@@ -34,3 +34,11 @@ Python3 , pygame.
 
 **To the shell**
 - Path\to\code python3 main.py
+
+## How to play
+
+**Use the arrow keys**
+- key up => move upward
+- key down => move downward
+- key left => move left
+- key right => move right 
