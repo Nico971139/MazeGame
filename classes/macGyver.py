@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from maze import Maze
+from classes.maze import Maze
 import pygame
 from settings import PLAYER
 

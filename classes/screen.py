@@ -1,7 +1,7 @@
 # coding: utf-8
 import pygame
 import sys
-from macGyver import MacGyver
+from classes.macGyver import MacGyver
 from settings import (BLOCKS, SIDE, BLACK, TITLE, SIZE,
 WALL, WAY, SYRINGE, ETHER, TUBE, BOSS)
 
