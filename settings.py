@@ -1,25 +1,23 @@
 # coding: utf-8
-from maze import Maze
-from macGyver import MacGyver
-from game import Game
-import pygame
 
 ###########################
-#		ENVIRONMENT       #
-###########################
-player = MacGyver()
-game = Game()
-wall = game.wall
-way = game.way
-syringe = game.syringe
-ether = game.ether
-tube = game.tube
-player_image = player.image
-boss = game.boss_image
-
-###########################
-#		COLOR SET		  #
+####### ENVIRONMENT #######
 ###########################
 
-black = (0, 0, 0)
-white = (240, 240, 240)
+TITLE = "MAZE GAME"
+SIDE = 20
+SIZE = WIDTH, HEIGHT = 300, 300
+BLOCKS = 15
+WALL = 'ressource/mur.png'
+WAY = 'ressource/chemin.png'
+SYRINGE = 'ressource/seringue.png'
+ETHER = 'ressource/ether.png'
+TUBE = 'ressource/tube.png'
+PLAYER = 'ressource/personnage.png'
+BOSS = 'ressource/gardien.png'
+###########################
+######## COLOR SET ########
+###########################
+
+BLACK = (0, 0, 0)
+WHITE = (240, 240, 240)
