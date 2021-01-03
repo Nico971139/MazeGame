@@ -7,7 +7,7 @@
 
 It's the implementation of a video game project. 
 You are character stuck up in a Maze. To escape you have to get all items
-and kill the guardian.
+and benumb the guardian.
 
 ## Requirements
 
