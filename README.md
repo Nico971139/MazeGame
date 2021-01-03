@@ -13,11 +13,6 @@ and kill the guardian.
 
 Python3 , pygame.
 
-- requirements.txt
-- setting.py is the screen set.
-- the folder class contains all the class.
-- you can run the programm with main.py. 
-
 ## How to install
 
 **Create you project folder**
