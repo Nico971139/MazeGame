@@ -30,6 +30,8 @@ Python3 , pygame.
 ## How run the game
 
 **To the shell**
+- run your favorite shell
+- go to the game folder
 - Path\to\code python3 main.py
 
 ## How to play
