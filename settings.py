@@ -5,8 +5,11 @@
 ###########################
 
 TITLE = "MAZE GAME"
+WIN = "YOU WIN"
+LOSE = "REST IN PEACE, SON OF GONDOR"
 SIDE = 20
 SIZE = WIDTH, HEIGHT = 300, 300
+CENTER = (WIDTH // 2, HEIGHT // 2)
 BLOCKS = 15
 WALL = 'ressource/mur.png'
 WAY = 'ressource/chemin.png'

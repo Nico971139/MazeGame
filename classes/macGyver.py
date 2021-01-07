@@ -2,7 +2,7 @@
 
 from classes.maze import Maze
 import pygame
-from settings import PLAYER
+from settings import PLAYER, SIDE
 
 
 class MacGyver(Maze):
@@ -13,5 +13,5 @@ class MacGyver(Maze):
         with an image. It's set with attribut self.macGyver * the block size"""
         self.image = pygame.image.load(PLAYER)
         self.rect = self.image.get_rect()
-        self.rect.x = self.macGyver[0] * 20
-        self.rect.y = self.macGyver[1] * 20
+        self.rect.x = self.macGyver[0] * SIDE
+        self.rect.y = self.macGyver[1] * SIDE

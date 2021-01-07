@@ -1,7 +1,8 @@
 # coding: utf-8
 import random
 import pygame
-
+from settings import ( BLACK, WHITE, WIN, LOSE, 
+SIZE, WIDTH, HEIGHT, CENTER )
 
 class Maze(pygame.sprite.Sprite):
     """Grid with coordinate keys and values
@@ -56,9 +57,20 @@ class Maze(pygame.sprite.Sprite):
     def checkPosGuardian(self, a, b):
         if self.grid[a, b] == self.grid[self.guardian]:
             if len(self.inventory) == 3:
+                self.endGame(WIN)
                 print("You win")
             else:
+                self.endGame(LOSE)
                 print("Repose en paix, fils du Gondor.")
+
+    def endGame(self, condition):
+        window = pygame.display.set_mode(SIZE)
+        bolt_font = pygame.font.SysFont('bolt', 25)
+        text_surface = bolt_font.render(condition, True, WHITE)
+        text_rect = text_surface.get_rect()
+        window.blit(text_surface, text_rect)
+        pygame.display.flip()
+
 
     # MOVES
     def top(self):
