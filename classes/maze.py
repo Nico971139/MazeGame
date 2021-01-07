@@ -1,8 +1,9 @@
 # coding: utf-8
 import random
 import pygame
-from settings import ( WHITE, WIN, LOSE, 
-SIZE, CENTER )
+from settings import (WHITE, WIN, LOSE,
+SIZE, CENTER)
+
 
 class Maze(pygame.sprite.Sprite):
     """Grid with coordinate keys and values
@@ -69,10 +70,9 @@ class Maze(pygame.sprite.Sprite):
         window = pygame.display.set_mode(SIZE)
         bolt_font = pygame.font.SysFont('bolt', 25)
         text_surface = bolt_font.render(condition, True, WHITE)
-        text_rect = text_surface.get_rect(center = CENTER)
+        text_rect = text_surface.get_rect(center=CENTER)
         window.blit(text_surface, text_rect)
         pygame.display.flip()
-
 
     # MOVES
     def top(self):

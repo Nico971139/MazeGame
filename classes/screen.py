@@ -2,11 +2,12 @@
 import pygame
 import sys
 from classes.macGyver import MacGyver
-from settings import ( BLOCKS, SIDE, BLACK, TITLE, SIZE, WALL,
- WAY, SYRINGE, ETHER, TUBE, BOSS )
+from settings import (BLOCKS, SIDE, BLACK, TITLE, SIZE, WALL,
+WAY, SYRINGE, ETHER, TUBE, BOSS)
 
 pygame.init()
 player = MacGyver()
+
 
 class Screen():
     """Attributs of the screen"""
@@ -23,7 +24,6 @@ class Screen():
         pygame.display.set_caption(TITLE)
         self.initWaze()
         self.GameStart()
-
 
     def initWaze(self):
         for y in range(BLOCKS):
@@ -43,7 +43,6 @@ class Screen():
                     self.window.blit(self.syringe, (x * SIDE, y * SIDE))
                 if player.grid[(x, y)] == "E":
                     self.window.blit(self.ether, (x * SIDE, y * SIDE))
-
 
     def GameStart(self):
         while True:
@@ -77,6 +76,3 @@ class Screen():
                         self.window.blit(self.player_image, player.rect)
                         pygame.display.flip()
             pygame.display.flip()
-
-
-
