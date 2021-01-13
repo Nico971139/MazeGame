@@ -20,7 +20,7 @@ Python3 , pygame.
 - create your folder "ressource"
 
 **Create a virtual environment** 
-- In the computer terminal write python pip install -m venv "env name"
+- In the computer terminal write py -m venv "env name"
 - activate your virtual environment => env/Scripts/activate.ps1
 
 **Install pygame and the other packages**
