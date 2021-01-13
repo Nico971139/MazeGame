@@ -34,6 +34,9 @@ Python3 , pygame.
 - go to the game folder
 - Path\to\code python3 main.py
 
+**In the game folder**
+- click on main.py
+
 ## How to play
 
 **Use the arrow keys**
